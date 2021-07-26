@@ -35,7 +35,7 @@ function MinFinderInArray(arr) {
   temp = arr[0];
 
   for (var i = 1; i < arr.length; i++) {
-    ComparisonCount++;
+    // ComparisonCount++;
 
     if (temp > arr[i]) {
       temp = arr[i];
