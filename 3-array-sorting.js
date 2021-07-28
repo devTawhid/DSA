@@ -79,26 +79,53 @@
 // using insertion sort
 let arr = [5,4,3,2,1];
 
-function insertionSorter(arr) {
+function insertionSorter__BUGGY(arr) {
 
-  for(let i = 1; i < arr.length; i++) {    //1 i=3(3<4)t                              //1 i=2                      //1 i=1                   
-    let item = arr[i];                     //2 item=5                                 //2 item=6                   //2 item=2                 
-    let j;                                 
-    j = i - 1;                             //3 j=2                                    //3 j=1                      //3 j=0                    
+  for(let i = 1; i < arr.length; i++) {                //1 i=3(3<4)t                              //1 i=2                       //1 i=1       
+    "use strict";            
+    let item = arr[i];                                 //2 item=5                                 //2 item=6                    //2 item=2                 
+    let j;                                
+    j = i - 1;                                         //3 j=2                                    //3 j=1                       //3 j=0                    
 
-    console.log("before:arr[i]:" + arr[i] , +":item" + item )
+    console.log("before:arr[i]:" + arr[i]  +" item: " + item );
 
-    while(j >= 0 && arr[i] < arr[j]){      //4 (j=2 && 5<6)t (j=1 && 5<4)f            //4 (j=1 && 6<4)f            //4 (j=0 && 2<4)t            
-      arr[j+1] = arr[j];                   //5 {arr[j+1]= 6=>[2,4,6,(6)]} {nan}       //5 arr[j+1]= nan=>[2,4,6,5] //5 arr[j+1]= 4=>[4,(4),6,5]    
-      j--;                                 //6 j =1, nan                              //6 j =nan                   //6 j = -1                    
-                                           //7 while {jump line4} ends                //7 while didn't started     //7 while ends                
+    while(j >= 0 && /*arr[i]=>*/arr[i] < arr[j]){      //4 (j=2 && 5<6)t (j=1 && 5<4)f            //4 (j=1 && 6<4)f            //4 (j=0 && 2<4)t            
+      arr[j+1] = arr[j];                               //5 {arr[j+1]= 6=>[2,4,6,(6)]} {nan}       //5 arr[j+1]= nan=>[2,4,6,5] //5 arr[j+1]= 4=>[4,(4),6,5]    
+      j--;                                             //6 j =1, nan                              //6 j =nan                   //6 j = -1                    
+                                                       //7 while {jump line4} ends                //7 while didn't started     //7 while ends                
     }
 
-    arr[j+1] = item;                       //8 arr[j+1=2]=5                           //8 arr[j+1=0]=nan           //8 arr[j+1=0]=2               
-                                           // result [2,4,(5),6]                      // result [2,4,6,5]          // result [(2),4,6,5]                 
+    arr[j+1] = item;                                   //8 arr[j+1=2]=5                           //8 arr[j+1=0]=nan           //8 arr[j+1=0]=2               
+                                                       // result [2,4,(5),6]                      // result [2,4,6,5]          // result [(2),4,6,5]                 
   
   
-    console.log("after : arr[i]:" + arr[i] , +"item:" + item )
+    console.log("after :arr[i]:" + arr[i] +" item: " + item);
+  }
+
+  return arr;
+}
+
+function insertionSorter(arr) {
+
+  for(let i = 1; i < arr.length; i++) {                //1 i=3(3<4)t                              //1 i=2                       //1 i=1       
+    "use strict";            
+    let item = arr[i];                                 //2 item=5                                 //2 item=6                    //2 item=2                 
+    let j;                                
+    j = i - 1;                                         //3 j=2                                    //3 j=1                       //3 j=0                    
+
+    console.log("before:arr[i]:" + arr[i]  +" item: " + item );
+
+    while(j >= 0 && /*arr[i]=>*/item < arr[j]){      //4 (j=2 && 5<6)t (j=1 && 5<4)f            //4 (j=1 && 6<4)f            //4 (j=0 && 2<4)t            
+      arr[j+1] = arr[j];                               //5 {arr[j+1]= 6=>[2,4,6,(6)]} {nan}       //5 arr[j+1]= nan=>[2,4,6,5] //5 arr[j+1]= 4=>[4,(4),6,5]    
+      j--;                                             //6 j =1, nan                              //6 j =nan                   //6 j = -1                    
+                                                       //7 while {jump line4} ends                //7 while didn't started     //7 while ends                
+    }
+
+    arr[j+1] = item;                                   //8 arr[j+1=2]=5                           //8 arr[j+1=0]=nan           //8 arr[j+1=0]=2               
+                                                       // result [2,4,(5),6]                      // result [2,4,6,5]          // result [(2),4,6,5]                 
+  
+  
+    console.log("after :arr[i]:" + arr[i] +" item: " + item);
   }
 
   return arr;
@@ -109,4 +136,26 @@ let arr2 = insertionSorter(arr);
 console.log(arr2)
 
 
+// {
+//   #include <stdio.h>
 
+//   int main() {
+//       int i,j,k,item;
+//       int arr[6] = {1,3,4,5,64,3};
+      
+//       for (i = 1; i < 6; i++) {
+//           item = arr[i];
+//           j = i - 1;
+          
+//           while(j >= 0 && item < arr[j]) {
+//               arr[j+1] = arr[j];
+//               j--;
+//           }
+//           arr[j+1] = item;
+//       }
+      
+//       for (k = 0; k < 6; k++) {
+//           printf("%d ", arr[k]);
+//       }
+//   }
+// }
