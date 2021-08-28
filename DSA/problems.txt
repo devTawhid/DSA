@@ -1,0 +1,6 @@
+for later:
+1/ Minimum Platforms 
+2/ Minimum number of Jumps to reach end
+3/ Stock span problem
+4/ Smallest positive missing number
+5/ Row with max 1s
